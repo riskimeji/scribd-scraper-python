@@ -1,5 +1,7 @@
 import requests
 import json
+import pandas as pd
+import openpyxl
 
 page_str = input("Page: ")
 query_str = input("Kata Kunci: ")
@@ -16,9 +18,14 @@ if response.status_code == 200:
     data = response.json()
     data = data.get("results", {}).get("documents", {}).get("content", {}).get("documents",{})
     documents_info = [{"url": prefix_str+str(doc["id"]), "title": doc["title"]} for doc in data if filter_str.lower() in doc["title"].lower()]
-   
-    with open('result.json', 'w') as file:
-        json.dump(documents_info, file, indent=2)
+    
+    df = pd.DataFrame(documents_info)
+    excel_filename = 'result.xlsx'
+    df.to_excel(excel_filename, index=False)
+
+
+    # with open('result.json', 'w') as file:
+    #     json.dump(documents_info, file, indent=2)
 
     print("Sukses simpan.")
 else:
