@@ -3,6 +3,13 @@ import json
 import pandas as pd
 import openpyxl
 
+print("\n             ==============================")
+print("             ------------------------------")
+print("             -----BOT SCRAPPING SCRIBD-----")
+print("             ----------By. Mejixx----------")
+print("             ------------------------------")
+print("             ==============================\n")
+
 page_str = input("Page: ")
 query_str = input("Kata Kunci: ")
 filter_str = input("Filter: ")
